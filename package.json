@@ -1,5 +1,5 @@
 {
-  "name": "UserSignup",
+  "name": "usersignup",
   "version": "1.0.1",
   "description": "POC",
   "main": "server.js",
@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Vijay Pratap Singh",
+  "author": "vijay",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,12 +19,19 @@
     "concurrently": "^3.6.1",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.15",
     "nodemailer": "^6.1.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "reactstrap": "^8.0.0",
     "validator": "^9.4.1"
   },
   "devDependencies": {
     "eslint-loader": "^2.2.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "redux-saga": "^1.1.3"
   }
 }
