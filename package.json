@@ -1,0 +1,30 @@
+{
+  "name": "UserSignup",
+  "version": "1.0.1",
+  "description": "POC",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Vijay Pratap Singh",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.1",
+    "dotenv": "^8.0.0",
+    "eslint": "^5.16.0",
+    "jsonwebtoken": "^8.5.0",
+    "nodemailer": "^6.1.1",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "eslint-loader": "^2.2.1",
+    "nodemon": "^1.18.10"
+  }
+}
