@@ -21,54 +21,38 @@
 // const port = process.env.PORT || 5000;
 // app.listen(port, () => console.log(`Server running on port ${port}`));
 
-
 const express = require('express');
 // const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-// const passport = require('passport');
+const morgan = require('morgan');
 const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 8080; // Step 1
 
 const user = require('./routes/user');
 
-const app = express();
-
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// DB Config d
-// const db = require('./config/keys').mongoURI;
-
-// Connect to MongoDB
-// mongoose
-//   .connect(db, {
-//     useCreateIndex: true,
+// Step 2
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_youtube', {
 //     useNewUrlParser: true,
-//     useFindAndModify: false
-//   })
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
+//     useUnifiedTopology: true
+// });
 
-// Passport middleware
-// app.use(passport.initialize());
+// mongoose.connection.on('connected', () => {
+//     console.log('Mongoose is connected!!!!');
+// });
 
-// Passport Config
-// require('./config/passport')(passport);
+// Data parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// Use Routes
-app.use('/api/user', user);
+// Step 3
 
-// production mode
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
+    app.use(express.static('client/build'));
 }
 
-const port = process.env.PORT || 5000;
+// HTTP request logger
+app.use(morgan('tiny'));
+app.use('/api/user', user);
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
-
+app.listen(PORT, console.log(`Server is starting at ${PORT}`));

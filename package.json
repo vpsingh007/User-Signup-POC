@@ -4,12 +4,13 @@
   "description": "POC",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "client": "cd client && npm start",
+    "dev": "concurrently -n 'server,client' -c 'red,green'  \"nodemon server.js\" \"npm run client\""
   },
   "author": "vijay",
   "license": "MIT",
@@ -20,14 +21,10 @@
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "express": "^4.16.4",
-    "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.4.15",
     "nodemailer": "^6.1.1",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "reactstrap": "^8.0.0",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "eslint-loader": "^2.2.1",
